@@ -13,6 +13,9 @@ import FBSDKLoginKit
 
 class SignInVC: UIViewController {
 
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,6 +24,24 @@ class SignInVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func emailSignInBtnPressed(_ sender: AnyObject) {
+        if let email = emailField.text, let password = passwordField.text {
+            FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+                if error != nil {
+                    FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+                        if error != nil {
+                             print("JASON: Unable to authenticate email/password with Firebase - \(error)")
+                        } else {
+                            print("JASON: Email User authenticated with Firebase")
+                        }
+                    })
+                } else {
+                    print("JASON: Successfully authenticated with Firebase")
+                }
+            })
+        }
     }
     
     @IBAction func facebookBtnPressed(_ sender: AnyObject) {
