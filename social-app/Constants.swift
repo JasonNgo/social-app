@@ -6,4 +6,6 @@
 //  Copyright © 2016 Jason Ngo. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+let SHADOW_GREY: CGFloat = 120.0 / 255.0

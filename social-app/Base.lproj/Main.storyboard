@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDe-XX-V9V">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDe-XX-V9V" customClass="ShadowView" customModule="social_app" customModuleProvider="target">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="social-app" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uS-TN-GIZ">
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="56"/>
@@ -35,6 +35,9 @@
                                     <constraint firstAttribute="bottom" secondItem="0uS-TN-GIZ" secondAttribute="bottom" constant="30" id="v1h-sM-nhv"/>
                                     <constraint firstAttribute="height" constant="125" id="wxa-K3-78b"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shadows" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qkx-YS-pFZ">
                                 <subviews>
@@ -53,13 +56,16 @@
                                     <constraint firstItem="q89-yS-6gV" firstAttribute="leading" secondItem="Qkx-YS-pFZ" secondAttribute="leading" constant="8" id="ssI-2n-Yze"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRN-HX-8Lc">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRN-HX-8Lc" customClass="RoundBtn" customModule="social_app" customModuleProvider="target">
                                 <color key="backgroundColor" red="0.22919061779975891" green="0.34924262762069702" blue="0.59513628482818604" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="FcK-VH-7zb"/>
                                     <constraint firstAttribute="width" constant="120" id="b0a-m9-Ib4"/>
                                 </constraints>
                                 <state key="normal" image="f"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a sign in method" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFt-xX-ZsG">
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
@@ -81,7 +87,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dz-Tt-e65">
                                         <color key="backgroundColor" red="0.99944847822189331" green="0.33994680643081665" blue="0.13212379813194275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <state key="normal" title="Sign In">
+                                        <state key="normal" title="sign in">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
