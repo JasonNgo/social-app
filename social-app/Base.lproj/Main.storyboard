@@ -121,11 +121,42 @@
                     <connections>
                         <outlet property="emailField" destination="xa0-QE-1fs" id="Af4-fQ-aND"/>
                         <outlet property="passwordField" destination="qVM-8E-ueH" id="d6a-Vt-BGZ"/>
+                        <segue destination="UpP-Wg-XsB" kind="show" identifier="segueToFeedVC" id="w6e-mC-jAy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="24.375" y="35.91549295774648"/>
+            <point key="canvasLocation" x="-484" y="57"/>
+        </scene>
+        <!--FeedVC-->
+        <scene sceneID="zh8-03-Uii">
+            <objects>
+                <viewController id="UpP-Wg-XsB" customClass="FeedVC" customModule="social_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yKb-RO-wYC"/>
+                        <viewControllerLayoutGuide type="bottom" id="t53-Vk-jbH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b2K-sw-ii9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UqN-tm-e9s">
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutBtnPressed:" destination="UpP-Wg-XsB" eventType="touchUpInside" id="uJR-3P-luq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UqN-tm-e9s" firstAttribute="centerX" secondItem="b2K-sw-ii9" secondAttribute="centerX" id="KyU-Bo-FRq"/>
+                            <constraint firstItem="UqN-tm-e9s" firstAttribute="centerY" secondItem="b2K-sw-ii9" secondAttribute="centerY" id="pS3-Dg-qJz"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vTg-Te-Pod" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="276" y="56"/>
         </scene>
     </scenes>
     <resources>

@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
+import SwiftKeychainWrapper
 
 class SignInVC: UIViewController {
 
@@ -19,6 +20,14 @@ class SignInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
+            performSegue(withIdentifier: segueToFeedVC, sender: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,10 +44,18 @@ class SignInVC: UIViewController {
                              print("JASON: Unable to authenticate email/password with Firebase - \(error)")
                         } else {
                             print("JASON: Email User authenticated with Firebase")
+                            
+                            if let user = user {
+                                self.completeSignIn(withUser: user)
+                            }
                         }
                     })
                 } else {
                     print("JASON: Successfully authenticated with Firebase")
+                    
+                    if let user = user {
+                        self.completeSignIn(withUser: user)
+                    }
                 }
             })
         }
@@ -67,8 +84,26 @@ class SignInVC: UIViewController {
                 print("JASON: Unable to authenticate with Firebase - \(error.debugDescription)\n")
             } else {
                 print("JASON: Successfully authenticated with Firebase\n")
+                
+                if let user = user {
+                    self.completeSignIn(withUser: user)
+                }
             }
         })
+    }
+    
+    func completeSignIn(withUser user: FIRUser) {
+        let saveSuccessful: Bool = KeychainWrapper.standard.set(user.uid, forKey: KEY_UID)
+        
+        if saveSuccessful {
+            print("JASON: Successfully saved uid to keychain")
+        
+            if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
+                performSegue(withIdentifier: segueToFeedVC, sender: nil)
+            }
+        } else {
+            print("JASON: Unable to save uid to keychain")
+        }
     }
 }
 
