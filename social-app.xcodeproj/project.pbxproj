@@ -12,10 +12,10 @@
 		7D49E5921DC14C1600A56DFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D49E5901DC14C1600A56DFF /* Main.storyboard */; };
 		7D49E5941DC14C1600A56DFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D49E5931DC14C1600A56DFF /* Assets.xcassets */; };
 		7D49E5971DC14C1600A56DFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D49E5951DC14C1600A56DFF /* LaunchScreen.storyboard */; };
-		7D49E5A21DC14CEE00A56DFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D49E5A11DC14CEE00A56DFF /* GoogleService-Info.plist */; };
 		7D49E5A41DC15B9100A56DFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D49E5A31DC15B9100A56DFF /* Constants.swift */; };
 		7D49E5A61DC15BA500A56DFF /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D49E5A51DC15BA500A56DFF /* ShadowView.swift */; };
 		7D7005681DC19CB700DC359E /* RoundBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7005671DC19CB700DC359E /* RoundBtn.swift */; };
+		7DDFDAD81DC1B841004E138B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DDFDAD71DC1B841004E138B /* GoogleService-Info.plist */; };
 		8F368DC54DC7830F393F977C /* Pods_social_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7334030610E15184A812E72C /* Pods_social_app.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,10 +28,11 @@
 		7D49E5931DC14C1600A56DFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D49E5961DC14C1600A56DFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D49E5981DC14C1600A56DFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7D49E5A11DC14CEE00A56DFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D49E5A31DC15B9100A56DFF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7D49E5A51DC15BA500A56DFF /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		7D7005671DC19CB700DC359E /* RoundBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundBtn.swift; sourceTree = "<group>"; };
+		7DDFDAD61DC1B0E4004E138B /* social-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "social-app.entitlements"; sourceTree = "<group>"; };
+		7DDFDAD71DC1B841004E138B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9057416B6F7A4C9D165BBD19 /* Pods-social-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-social-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-social-app/Pods-social-app.release.xcconfig"; sourceTree = "<group>"; };
 		E322FAF5342F1AC4AA27AC36 /* Pods-social-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-social-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-social-app/Pods-social-app.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,13 +78,14 @@
 		7D49E58B1DC14C1600A56DFF /* social-app */ = {
 			isa = PBXGroup;
 			children = (
+				7DDFDAD61DC1B0E4004E138B /* social-app.entitlements */,
 				7D49E5A31DC15B9100A56DFF /* Constants.swift */,
 				7D49E59E1DC14C5100A56DFF /* Model */,
 				7D49E5A01DC14C5F00A56DFF /* View */,
 				7D49E59F1DC14C5900A56DFF /* Controller */,
 				7D49E58C1DC14C1600A56DFF /* AppDelegate.swift */,
-				7D49E5A11DC14CEE00A56DFF /* GoogleService-Info.plist */,
 				7D49E5981DC14C1600A56DFF /* Info.plist */,
+				7DDFDAD71DC1B841004E138B /* GoogleService-Info.plist */,
 				7D49E5901DC14C1600A56DFF /* Main.storyboard */,
 				7D49E5951DC14C1600A56DFF /* LaunchScreen.storyboard */,
 				7D49E5931DC14C1600A56DFF /* Assets.xcassets */,
@@ -161,6 +163,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 3TDSAUM76X;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -188,7 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D49E5971DC14C1600A56DFF /* LaunchScreen.storyboard in Resources */,
-				7D49E5A21DC14CEE00A56DFF /* GoogleService-Info.plist in Resources */,
+				7DDFDAD81DC1B841004E138B /* GoogleService-Info.plist in Resources */,
 				7D49E5941DC14C1600A56DFF /* Assets.xcassets in Resources */,
 				7D49E5921DC14C1600A56DFF /* Main.storyboard in Resources */,
 			);
@@ -375,11 +382,17 @@
 			baseConfigurationReference = E322FAF5342F1AC4AA27AC36 /* Pods-social-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "social-app/social-app.entitlements";
 				DEVELOPMENT_TEAM = 3TDSAUM76X;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "social-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ngo.jason.social-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -389,11 +402,17 @@
 			baseConfigurationReference = 9057416B6F7A4C9D165BBD19 /* Pods-social-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "social-app/social-app.entitlements";
 				DEVELOPMENT_TEAM = 3TDSAUM76X;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "social-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ngo.jason.social-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
