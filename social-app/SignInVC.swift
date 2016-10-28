@@ -19,7 +19,6 @@ class SignInVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -28,11 +27,6 @@ class SignInVC: UIViewController {
         if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
             performSegue(withIdentifier: segueToFeedVC, sender: nil)
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func emailSignInBtnPressed(_ sender: AnyObject) {
@@ -46,7 +40,8 @@ class SignInVC: UIViewController {
                             print("JASON: Email User authenticated with Firebase")
                             
                             if let user = user {
-                                self.completeSignIn(withUser: user)
+                                let userData = ["provider" : user.providerID]
+                                self.completeSignIn(withUser: user, with: userData)
                             }
                         }
                     })
@@ -54,7 +49,8 @@ class SignInVC: UIViewController {
                     print("JASON: Successfully authenticated with Firebase")
                     
                     if let user = user {
-                        self.completeSignIn(withUser: user)
+                        let userData = ["provider" : user.providerID]
+                        self.completeSignIn(withUser: user, with: userData)
                     }
                 }
             })
@@ -86,18 +82,21 @@ class SignInVC: UIViewController {
                 print("JASON: Successfully authenticated with Firebase\n")
                 
                 if let user = user {
-                    self.completeSignIn(withUser: user)
+                    let userData = ["provider" : credentials.provider]
+                    self.completeSignIn(withUser: user, with: userData)
                 }
             }
         })
     }
     
-    func completeSignIn(withUser user: FIRUser) {
+    func completeSignIn(withUser user: FIRUser, with userData: Dictionary<String, String>) {
         let saveSuccessful: Bool = KeychainWrapper.standard.set(user.uid, forKey: KEY_UID)
         
         if saveSuccessful {
             print("JASON: Successfully saved uid to keychain")
-        
+            
+            DataService.ds.createFirebaseDBUser(uid: user.uid, userData: userData)
+            
             if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
                 performSegue(withIdentifier: segueToFeedVC, sender: nil)
             }
