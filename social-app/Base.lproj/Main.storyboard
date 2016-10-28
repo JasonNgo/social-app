@@ -176,12 +176,16 @@
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GSp-1E-PvG">
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="baJ-Fg-J0i">
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="baJ-Fg-J0i">
                                                 <color key="backgroundColor" red="0.44798839092254639" green="0.56481444835662842" blue="0.61381113529205322" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56" id="987-yR-W4w"/>
                                                     <constraint firstAttribute="width" constant="56" id="Afy-hO-mGh"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="IDZ-sp-Bii" appends="YES" id="rDq-CY-dGh"/>
+                                                </connections>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="add a caption" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Vh-lK-b4F" customClass="ShadowField" customModule="social_app" customModuleProvider="target">
                                                 <constraints>
@@ -330,10 +334,16 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addImageView" destination="baJ-Fg-J0i" id="qPE-HE-fzf"/>
                         <outlet property="tableView" destination="6fZ-1v-ddW" id="f6c-Rr-aqu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vTg-Te-Pod" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="IDZ-sp-Bii">
+                    <connections>
+                        <action selector="addImagePressed:" destination="UpP-Wg-XsB" id="Tap-aJ-yo2"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="276" y="55.322338830584712"/>
         </scene>
