@@ -205,6 +205,9 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="postBtnPressed:" destination="UpP-Wg-XsB" eventType="touchUpInside" id="ac4-TN-d3Z"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -335,6 +338,7 @@
                     </view>
                     <connections>
                         <outlet property="addImageView" destination="baJ-Fg-J0i" id="qPE-HE-fzf"/>
+                        <outlet property="captionField" destination="2Vh-lK-b4F" id="HuT-EU-LxY"/>
                         <outlet property="tableView" destination="6fZ-1v-ddW" id="f6c-Rr-aqu"/>
                     </connections>
                 </viewController>

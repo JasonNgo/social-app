@@ -9,14 +9,19 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 import SwiftKeychainWrapper
 
 class FeedVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addImageView: UIImageView!
+    @IBOutlet weak var captionField: ShadowField!
+    
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     var imagePicker: UIImagePickerController!
+    var imageSelected = false
     
     var posts = [Post]()
     
@@ -41,6 +46,7 @@ class FeedVC: UIViewController {
                 }
             }
             
+            self.posts.reverse()
             self.tableView.reloadData()
         })
     }
@@ -48,6 +54,36 @@ class FeedVC: UIViewController {
     //MARK: IBActions
     @IBAction func addImagePressed(_ sender: AnyObject) {
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func postBtnPressed(_ sender: AnyObject) {
+        guard let caption = captionField.text, caption != "" else {
+            print("JASON: Caption does not contain any text")
+            return
+        }
+        
+        guard let img = addImageView.image, imageSelected == true else {
+            print("JASON: Did not add an image")
+            return
+        }
+        
+        if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+            let imgUID = NSUUID().uuidString
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            DataService.ds.REF_POST_IMAGES.child(imgUID).put(imgData, metadata: metadata, completion: { (metadata, error) in
+                if error != nil {
+                    print("JASON: Unable to upload image to Firebase storage")
+                } else {
+                    print("JASON: Successfully uploaded image to Firebase storage")
+                    let downloadURL = metadata?.downloadURL()?.absoluteString
+                    if let url = downloadURL {
+                        self.postToFirebase(imgURL: url)
+                    }
+                }
+            })
+        }
     }
     
     @IBAction func signOutBtnPressed(_ sender: AnyObject) {
@@ -62,6 +98,23 @@ class FeedVC: UIViewController {
         try! FIRAuth.auth()?.signOut()
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func postToFirebase(imgURL: String) {
+        let post: Dictionary<String, Any> = [
+            "caption" : captionField.text!,
+            "imageURL" : imgURL,
+            "likes" : 0
+        ]
+        
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        firebasePost.setValue(post)
+        
+        captionField.text = ""
+        imageSelected = false
+        addImageView.image = UIImage(named: "add-image")
+        
+        self.tableView.reloadData()
+    }
 }
 
 //MARK: UITableView
@@ -71,7 +124,12 @@ extension FeedVC: UITableViewDelegate, UITableViewDataSource {
         let post = posts[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
-            cell.configureCell(post: post)
+            if let img = FeedVC.imageCache.object(forKey: post.imageURL as NSString) {
+                cell.configureCell(post: post, img: img)
+            } else {
+                cell.configureCell(post: post)
+            }
+            
             return cell
         } else {
             return FeedCell()
@@ -90,6 +148,7 @@ extension FeedVC: UIImagePickerControllerDelegate, UINavigationControllerDelegat
         
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             addImageView.image = image
+            imageSelected = true
         }
         
         imagePicker.dismiss(animated: true, completion: nil)
